@@ -110,7 +110,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									Phan Văn Phước Thinh [16110474]
 								</span>
 								<!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-								
+
 							</a>
 							<ul class="dropdown-menu dropdown-menu-default">
 								<li>
@@ -168,33 +168,33 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="heading">
 						<h3>CHỨC NĂNG</h3>
 					</li>
-					<li class="active">
+					<li>
 						<a href="index.html">
 							<i class="icon-home"></i>
 							<span class="title">TÌM KIẾM HỢP TÁC</span>
 						</a>
 					</li>
 					<li class="">
-							<a href="index.html">
-									<i class="icon-diamond"></i>
-								<span class="title">ĐỀ TÀI QUAN TÂM</span>
-							</a>
-						</li>
-					<li class="">
 						<a href="index.html">
-								<i class="icon-paper-plane"></i>
+							<i class="icon-diamond"></i>
+							<span class="title">ĐỀ TÀI QUAN TÂM</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="index.html">
+							<i class="icon-paper-plane"></i>
 							<span class="title">ĐĂNG TIN</span>
 						</a>
 					</li>
 					<li class="">
 						<a href="index.html">
-								<i class="icon-globe"></i>
+							<i class="icon-globe"></i>
 							<span class="title">QUẢN LÝ TIN</span>
 						</a>
 					</li>
 					<li class="">
 						<a href="index.html">
-								<i class="icon-key"></i>
+							<i class="icon-key"></i>
 							<span class="title">THOÁT </span>
 						</a>
 					</li>
@@ -223,8 +223,22 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- END PAGE TITLE -->
 				</div>
 				<div class="form-group">
-						<input type="text" class="form-control" id="usr">
-					  </div>
+					<input type="text" class="form-control" id="usr">
+				</div>
+				<div class="page-head">
+					<!-- BEGIN PAGE TITLE -->
+					<div class="page-title">
+						<h1>Mô tả</h1>
+					</div>
+					<!-- END PAGE TITLE -->
+				</div>
+				<div class="form-group">
+					<textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
+				</div>
+				<!-- END PAGE TITLE -->
+
+
+
 
 				<div class="page-head">
 					<!-- BEGIN PAGE TITLE -->
@@ -236,12 +250,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 
-				<div class="form-group" >
+				<div class="form-group">
 
 					<div class="col-md-12" style="padding: 0px; ">
 						<form id="get-data-form" method="post">
 							<textarea class="tinymce" id="texteditor"></textarea>
-							<button type="submit" class="btn" style="width: 100px; background-color: rgb(22, 158, 244);color: white; margin-top: 10px">ĐĂNG TIN</button>
 						</form>
 						<div id="data-container">
 						</div>
@@ -253,6 +266,89 @@ License: You must have a valid license purchased only from themeforest(the above
 						<script type="text/javascript" src="js/getdata.js"></script>
 					</div>
 				</div>
+				<div class="col-md-6">
+					<style>
+						.btn-file {
+							position: relative;
+							overflow: hidden;
+						}
+
+						.btn-file input[type=file] {
+							position: absolute;
+							top: 0;
+							right: 0;
+							min-width: 100%;
+							min-height: 100%;
+							font-size: 100px;
+							text-align: right;
+							filter: alpha(opacity=0);
+							opacity: 0;
+							outline: none;
+							background: white;
+							cursor: inherit;
+							display: block;
+						}
+
+						#img-upload {
+							width: 100%;
+						}
+					</style>
+					<div class="form-group" style="margin-left: 0px;">
+						<label style="margin-top: 10px; color: gray;  font-size: 16px">Ảnh đại diện</label>
+						<div class="input-group">
+							<span class="input-group-btn">
+								<span class="btn btn-default btn-file">
+									Chọn ảnh... <input type="file" id="imgInp">
+								</span>
+							</span>
+							<input type="text" class="form-control" readonly>
+						</div>
+						<img id='img-upload' />
+					</div>
+					<script>
+						$(document).ready(function () {
+							$(document).on('change', '.btn-file :file', function () {
+								var input = $(this),
+									label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+								input.trigger('fileselect', [label]);
+							});
+
+							$('.btn-file :file').on('fileselect', function (event, label) {
+
+								var input = $(this).parents('.input-group').find(':text'),
+									log = label;
+
+								if (input.length) {
+									input.val(log);
+								} else {
+									if (log) alert(log);
+								}
+
+							});
+							function readURL(input) {
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
+
+									reader.onload = function (e) {
+										$('#img-upload').attr('src', e.target.result);
+									}
+
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+
+							$("#imgInp").change(function () {
+								readURL(this);
+							});
+						});
+					</script>
+					<form id="get-data-form" method="post">
+						<button type="submit" class="btn"
+							style="width: 100px; background-color: rgb(22, 158, 244);color: white; ">ĐĂNG
+							TIN</button>
+					</form>
+				</div>
+
 				<!-- END PAGE HEAD -->
 			</div>
 		</div>
@@ -276,44 +372,41 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 	<!-- BEGIN CORE PLUGINS -->
 	<!--[if lt IE 9]>
-	<script src="../../assets/global/plugins/respond.min.js"></script>
-	<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+	<script src=" assets/global/plugins/respond.min.js"></script>
+	<script src=" assets/global/plugins/excanvas.min.js"></script> 
 	<![endif]-->
-	<script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 	<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-	<script src="../../assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"
+	<script src=" assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"
 		type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
-		type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
-		type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 	<!-- END CORE PLUGINS -->
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
-		type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 	<!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-	<script src="../../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-	<script src="../../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+	<script src=" assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>
-	<script src="../../assets/admin/layout4/scripts/layout.js" type="text/javascript"></script>
-	<script src="../../assets/admin/layout4/scripts/demo.js" type="text/javascript"></script>
-	<script src="../../assets/admin/pages/scripts/index3.js" type="text/javascript"></script>
-	<script src="../../assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+	<script src=" assets/global/scripts/metronic.js" type="text/javascript"></script>
+	<script src=" assets/admin/layout4/scripts/layout.js" type="text/javascript"></script>
+	<script src=" assets/admin/layout4/scripts/demo.js" type="text/javascript"></script>
+	<script src=" assets/admin/pages/scripts/index3.js" type="text/javascript"></script>
+	<script src=" assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 	<script>
 		jQuery(document).ready(function () {
