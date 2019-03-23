@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
 	<meta charset="utf-8" />
-	<title>Đăng tin</title>
+	<title>Sửa bài đăng</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<meta content="" name="description" />
@@ -69,7 +69,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- BEGIN HEADER -->
 	<!--<img src="images/SPKT.jpg">-->
 	<div class="page-header navbar navbar-fixed-top">
-
 		<!-- BEGIN HEADER INNER -->
 		<div class="page-header-inner">
 			<!-- BEGIN LOGO -->
@@ -298,7 +297,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="input-group">
 							<span class="input-group-btn">
 								<span class="btn btn-default btn-file">
-									Chọn ảnh... <input type="file" id="imgInp">
+									Đổi ảnh... <input type="file" id="imgInp">
 								</span>
 							</span>
 							<input type="text" class="form-control" readonly>
@@ -342,11 +341,9 @@ License: You must have a valid license purchased only from themeforest(the above
 							});
 						});
 					</script>
-					<form id="get-data-form">
-						<a type="submit" class="btn"
-							style="width: 100px; background-color: rgb(22, 158, 244);color: white;" data-target="#myModal" data-toggle="modal">ĐĂNG
-							TIN</a>
-					</form>
+					<!-- <form onsubmit="return modalConfirm()"> -->
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Lưu thay đổi</button>
+					<!-- </form> -->
 				</div>
 
 				<!-- END PAGE HEAD -->
@@ -368,22 +365,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<i class="icon-arrow-up"></i>
 		</div>
 	</div>
-	<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">THÔNG BÁO</h4>
-					</div>
-					<div class="modal-body">
-						<p>Đã thêm thành công !!</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default">OK</button>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	<!-- END FOOTER -->
 	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 	<!-- BEGIN CORE PLUGINS -->
@@ -391,6 +373,46 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src=" assets/global/plugins/respond.min.js"></script>
 	<script src=" assets/global/plugins/excanvas.min.js"></script> 
 	<![endif]-->
+	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+							aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel" style="font-size: 20px; font-weight: bold;">Bạn có
+						chắn chắn muốn lưu thấy không em ??</h4>
+				</div>
+
+				<form onsubmit="return validate_form()">
+
+					<div class="modal-footer">
+						<button class='btn btn-danger' type="submit" name="remove_levels" value="delete"><span
+								class="fa fa-times"></span> delete</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div> -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">THÔNG BÁO</h4>
+				</div>
+				<div class="modal-body">
+					<p>Bạn có chắc chắn muốn sửa không ?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger">Xác nhận</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src=" assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 	<script src=" assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 	<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
